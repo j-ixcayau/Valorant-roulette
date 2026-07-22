@@ -4,7 +4,7 @@ import { type ValorantAgent } from '@/lib/types';
 
 async function getAgents(): Promise<ValorantAgent[]> {
   try {
-    const response = await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true', { next: { revalidate: 2592000 } }); // Revalidate once a month (30 days)
+    const response = await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true', { cache: 'force-cache' }); // Fetched at build time and baked into the static export
     if (!response.ok) {
       console.error('Failed to fetch agents:', response.statusText);
       return [];
