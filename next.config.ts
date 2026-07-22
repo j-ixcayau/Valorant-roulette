@@ -1,7 +1,8 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Emit a fully static site into ./out (no server backend needed).
+  output: 'export',
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -9,6 +10,8 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    // Static export can't run the Next image optimizer, so serve images as-is.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
